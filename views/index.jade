@@ -1,0 +1,83 @@
+extends layout
+
+block content
+	div(id="top", class="header")
+		div(class="vert-text")
+			div(class="wrapper")
+				p
+					span(class="pagetitle")
+				div(id="question")
+					img(src="", class="questionimagearea")
+					div(id="question-title-wrap")
+						h4 In 
+							span(id="question-title")
+							| &nbsp
+							span(class="pagequestion")
+					div(id="question-wrap-wrapper")
+						p
+							span(id="question-wrap")
+					button(id="flip-1", class="btn btn-custom btn-default") Yes
+					button(id="flip-2", class="btn btn-custom btn-default") No
+				div(id="answer-1", class="answer")
+					img(src="", class="answerimagearea")
+					div(class="answer-1-title-wrap")
+						h3
+							span(id="answer-1-title")
+							| !
+					div(id="answer-1-wrap")
+					button(class="btn btn-custom flop btn-default") Next
+				div(id="answer-2", class="answer")
+					img(src="", class="answerimagearea")
+					div(class="answer-2-title-wrap")
+						h3
+							span(id="answer-2-title")
+							| !
+					div(id="answer-2-wrap")
+					button(class="btn btn-custom flop btn-default") Next
+	footer
+		div(class="container")
+			div(class="row")
+				div(class="col-xs-10 col-xs-offset-1 text-center")
+					p Permalink:
+					pre(class="perma")
+						i
+							span(class="pagesite permalinkurl")
+							| ?question=
+							span(class="permalink")
+					div(class="panel-group", id="accordion")
+						div(class="panel panel-default")
+							div(class="panel-heading")
+								h4(class="panel-title")
+									a(data-toggle="collapse", data-parent="#accordion", href="#collapseOne", id="closelink")
+										Got Got an idea for a question?
+									span(id="close")
+										i(class="glyphicon glyphicon-remove closer", href="#collapseOne")
+							div(id="collapseOne", class="panel-collapse collapse")
+								div(class="panel-body")
+									div(class="panel-content")
+										div(class="col-xs-12 padding-dead")
+											div(class="form-group")
+												label(class="ss-q-title input1label", for="entry_0") In..
+												input(type="text", name="entry.0.single", value="", id="entry_0", class="form-control", placeholder="enter the name of a movie")
+											div(class="form-group")
+												label(class="ss-q-title input2label", for="entry_1")
+												input(type="text", name="entry.1.single", value="", id="entry_1", class="form-control", placeholder="do such and such")
+											div(class="form-group")
+												label(class="ss-q-title input3label", for="entry_2") Anything Else to Add?
+												textarea(name="entry.2.single", id="entry_2", class="form-control", placeholder="ex. how were his legs removed in this movie? links to appropriate images, feel free to be absurd")
+											button(type="submit", name="submit", value="Submit", class="btn btn-default btn-contact btn-submit") Submit
+											button(type="reset", class="btn btn-default btn-contact") Clear
+									div(class="panel-thanks")
+										h3 Thank you!
+					p This website was inspired by one of the fundamental questions about any work that features Gary Sinise.  In that particular work...does Gary Sinise have legs?
+					hr
+					p Copyright &copy; iter
+						span(class="slashes") //
+						| rogative 2014
+					p
+						span(id="count")
+						TBs data transmitted
+					p No. of rolls: 
+						span(id="rolls")
+					p No. of #'s: 
+						span(id="numquestions")
