@@ -26,16 +26,13 @@ router.post('/rate', function(req, res) {
 		//	, {priority:-1}
 		, {$set: {rating: updateInfo.rating, ratings: updateInfo.ratings}}
 		, { upsert:false}
-		, function(err, doc) {
-			 console.log("changed document");
-			 console.dir(doc);
-
-			 gary.find({}).toArray(function(err, docs) {
-				 console.log("all documents");
-				 db.close();
-				 });
+		, function(err, result) {
+			 res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
+        		 });
 			});
-     });
+
 
 router.post('/counter', function(req, res) {
 	var db = req.db;
@@ -44,9 +41,12 @@ router.post('/counter', function(req, res) {
 		{ seq: 0 }
 		, {$inc:  { counter: 1}}
 		, { upsert:false}
-		, function(err) {
-			if (err) throw err;
+		, function(err, result) {
+			res.send(
+            (err === null) ? { msg: '' } : { msg: err }
+        );
 			});
+
      });
 
 module.exports = router;
