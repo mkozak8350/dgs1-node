@@ -9,11 +9,44 @@ router.get('/feed', function(req, res) {
     });
 });
 
-/* GET users listing. */
 router.get('/', function(req, res) {
   res.render('gary', { title: 'gary' });
 });
 
+router.post('/rate', function(req, res) {
+	var db = req.db;
+	var updateInfo = {};
+	updateInfo.question = String;
+	var updateInfo = req.body;	
+	var gary = db.collection('gary');	
+	var queryInfo = { questionnumber: updateInfo.question };
 
+	gary.update( 
+		queryInfo
+		//	, {priority:-1}
+		, {$set: {rating: updateInfo.rating, ratings: updateInfo.ratings}}
+		, { upsert:false}
+		, function(err, doc) {
+			 console.log("changed document");
+			 console.dir(doc);
+
+			 gary.find({}).toArray(function(err, docs) {
+				 console.log("all documents");
+				 db.close();
+				 });
+			});
+     });
+
+router.post('/counter', function(req, res) {
+	var db = req.db;
+	var gary = db.collection('gary');	
+	gary.update( 
+		{ seq: 0 }
+		, {$inc:  { counter: 1}}
+		, { upsert:false}
+		, function(err) {
+			if (err) throw err;
+			});
+     });
 
 module.exports = router;
